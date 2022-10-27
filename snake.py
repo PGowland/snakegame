@@ -1,12 +1,15 @@
 from turtle import Turtle
+
 UP = 90
 LEFT = 180
 DOWN = 270
 RIGHT = 0
 
-class Snake:
+
+class Snake(Turtle):
 
     def __init__(self):
+        super().__init__()
         self.snakes = []
         self.create_snake()
         self.head = self.snakes[0]
@@ -44,10 +47,12 @@ class Snake:
         snake = Turtle("square")
         snake.color("white")
         snake.penup()
-        snake.setposition((self.snakes[-1].xcor()-20), self.snakes[-1].ycor())
+        snake.setposition((self.snakes[-1].xcor() - 20), self.snakes[-1].ycor())
         self.snakes.append(snake)
 
-
-
-
-
+    def reset_snake(self):
+        for snake in self.snakes:
+            snake.goto(-1000, 1000)
+        self.snakes.clear()
+        self.create_snake()
+        self.head = self.snakes[0]
